@@ -1,0 +1,16 @@
+{
+  "name": "hCaptcha",
+  "description": "Protect forms by using the https://www.hcaptcha.com/",
+  "version": "1.0.0",
+  "api": "^8.0",
+  "url": "https://jdanek.eu/",
+  "class": "HCaptchaPlugin",
+  "langs": {
+    "hcaptcha": "Resources/languages/"
+  },
+  "autoload": {
+    "psr-4": {
+      "HCaptcha\\": "src"
+    }
+  }
+}
