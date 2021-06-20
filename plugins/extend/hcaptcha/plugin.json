@@ -1,4 +1,5 @@
 {
+  "$schema": "../../../system/schema/extend.json",
   "name": "hCaptcha",
   "description": "Protect forms by using the https://www.hcaptcha.com/",
   "version": "1.0.0",
