@@ -7,6 +7,7 @@ use HCaptcha\Response;
 use Sunlight\Extend;
 use Sunlight\Plugin\Action\PluginAction;
 use Sunlight\Plugin\ExtendPlugin;
+use Sunlight\User;
 
 /**
  * ReCaptcha plugin
@@ -44,7 +45,7 @@ class HCaptchaPlugin extends ExtendPlugin
      */
     public function onHead(array $args): void
     {
-        if (!_logged_in) {
+        if (!User::isLoggedIn()) {
             $args['js_before'] .= "<script src='" . HCaptcha::URL_SCRIPT . "' async defer></script>";
         }
     }
@@ -54,7 +55,7 @@ class HCaptchaPlugin extends ExtendPlugin
      */
     public function onCaptchaInit(array $args): void
     {
-        if (!_logged_in) {
+        if (!User::isLoggedIn()) {
             $content = "<div class='h-captcha' data-sitekey='" . $this->getConfig()->offsetGet('site_key') . "'" . ($this->getConfig()->offsetGet('dark_mode') ? " data-theme='dark'" : '') . "></div>";
             $args['value'] = [
                 'label' => _lang('captcha.input'),
@@ -70,7 +71,7 @@ class HCaptchaPlugin extends ExtendPlugin
      */
     public function onCaptchaCheck(array $args): void
     {
-        if (!_logged_in) {
+        if (!User::isLoggedIn()) {
             if (isset($_POST['h-captcha-response'])) {
                 /** @var $response Response */
                 $response = $this->hcaptcha->validate($_POST['h-captcha-response'] ?? null);
